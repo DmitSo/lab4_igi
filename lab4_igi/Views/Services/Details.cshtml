@@ -1,0 +1,36 @@
+﻿@model lab1_ef.Service
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Service</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Client.ClientId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServiceType.ServiceTypeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ServiceId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
