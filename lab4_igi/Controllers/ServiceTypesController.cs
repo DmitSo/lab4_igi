@@ -31,18 +31,18 @@ namespace lab4_igi.Controllers
             return View(await _context.ServiceTypes.ToListAsync());
         }
 
-        public ActionResult SortedList(bool name, bool price)
+        public ActionResult SortedList(bool first, bool second)
         {
             var sortedList = _context.ServiceTypes.ToList();
-            if (name & !price)
+            if (first & !second)
             {
                 sortedList = sortedList.OrderBy(p => p.Name).ToList();
             }
-            else if (!name & price)
+            else if (!first & second)
             {
                 sortedList = sortedList.OrderBy(p => p.Cost).ToList();
             }
-            else if (name & price)
+            else if (first & second)
             {
                 sortedList.Sort(new ServiceTypesComparer());
             }
@@ -56,11 +56,11 @@ namespace lab4_igi.Controllers
         public void SaveFiltration(string find, bool first, bool second)
         {
             var findingTextJSON = JsonConvert.SerializeObject(find);
-            HttpContext.Session.SetString("TypeOfService.Finding", findingTextJSON);
+            HttpContext.Session.SetString("ServiceType.Finding", findingTextJSON);
             var filterFirstJSON = JsonConvert.SerializeObject(first.ToString());
-            HttpContext.Session.SetString("TypeOfService.Filter.First", filterFirstJSON);
+            HttpContext.Session.SetString("ServiceType.Filter.First", filterFirstJSON);
             var filterSecondJSON = JsonConvert.SerializeObject(second.ToString());
-            HttpContext.Session.SetString("TypeOfService.Filter.Second", filterSecondJSON);
+            HttpContext.Session.SetString("ServiceType.Filter.Second", filterSecondJSON);
         }
 
         // GET: ServiceTypes/Details/5

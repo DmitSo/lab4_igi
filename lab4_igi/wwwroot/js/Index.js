@@ -15,8 +15,9 @@ var saveToSession = function (urlAdress) {
     $.ajax({
         data: {
             find: $('#find').val(),
-            first: $('#sort-name').prop('checked'),
-            second: $('#sort-price').prop('checked')
+            first: $('#sort-first').prop('checked'),
+            second: $('#sort-second').prop('checked'),
+            third: $('#sort-third').prop('checked')
         },
         url: urlAdress,
         type: 'POST'
@@ -27,8 +28,9 @@ var askServerAndRenderList = function (urlAdress) {
     $('#list').text('');
     $.ajax({
         data: {
-            name: $('#sort-name').prop('checked'),
-            price: $('#sort-price').prop('checked')
+            first: $('#sort-first').prop('checked'),
+            second: $('#sort-second').prop('checked'),
+            third: $('#sort-third').prop('checked')
         },
         url: urlAdress,
         success: function (response) {

@@ -18,7 +18,7 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
-                <input type="checkbox" id="sort-name"
+                <input type="checkbox" id="sort-first"
                        checked="@(GetFromSession("ServiceType.Filter.First") == "True" ? true : false)" />
             </th>
             <th>
@@ -26,7 +26,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cost)
-                <input type="checkbox" id="sort-price"
+                <input type="checkbox" id="sort-second"
                        checked="@(GetFromSession("ServiceType.Filter.Second") == "True" ? true : false)" />
             </th>
             <th></th>

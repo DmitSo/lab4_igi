@@ -50,7 +50,7 @@ namespace lab4_igi
             services.AddMvc(options =>
             {
                 options.Filters.Add(new JournalKeeperAttribute());
-                // options.Filters.Add(new ExceptionFilterAttribute());
+                options.Filters.Add(new ExceptionFilterAttribute());
             });
         }
 

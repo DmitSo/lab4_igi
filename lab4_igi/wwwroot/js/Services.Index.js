@@ -1,6 +1,6 @@
 ﻿askServerAndRenderList('Services/SortedList');
 
-$('#sort-name, #sort-price').click(function () {
+$('#sort-first, #sort-second, #sort-third').click(function () {
     askServerAndRenderList('Services/SortedList');
     saveToSession('Services/SaveFiltration');
 });

@@ -32,29 +32,33 @@ namespace lab4_igi.Controllers
             return View(await hotelContext.ToListAsync());
         }
 
-        public ActionResult SortedList(bool name, bool price)
+        public ActionResult SortedList(bool first, bool second, bool third)
         {
             var sortedList = _context.Services.ToList();
-            if (name & !price)
-            {
-                sortedList = sortedList.OrderBy(p => p.Client).ToList();
-            }
-            else if (!name & price)
-            {
-                sortedList = sortedList.OrderBy(p => p.ServiceType.Cost).ToList();
-            }
-            else if (name & price)
+            if ((first & second & third))
             {
                 sortedList.Sort(new ServiceComparer());
+                sortedList = sortedList.OrderBy(p => p.ClientId).ToList();
             }
             else
             {
-                sortedList = _context.Services.ToList();
+                if (first)
+                {
+                    sortedList = sortedList.OrderBy(p => p.ClientId).ToList();
+                }
+                if (second)
+                {
+                    sortedList = sortedList.OrderBy(p => p.EmployeeId).ToList();
+                }
+                if (third)
+                {
+                    sortedList = sortedList.OrderBy(p => p.ServiceTypeId).ToList();
+                }
             }
             return PartialView("SortedList", sortedList);
         }
 
-        public void SaveFiltration(string find, bool first, bool second)
+        public void SaveFiltration(string find, bool first, bool second, bool third)
         {
             var findingTextJSON = JsonConvert.SerializeObject(find);
             HttpContext.Session.SetString("Service.Finding", findingTextJSON);
@@ -62,6 +66,8 @@ namespace lab4_igi.Controllers
             HttpContext.Session.SetString("Service.Filter.First", filterFirstJSON);
             var filterSecondJSON = JsonConvert.SerializeObject(second.ToString());
             HttpContext.Session.SetString("Service.Filter.Second", filterSecondJSON);
+            var filterThirdJSON = JsonConvert.SerializeObject(third.ToString());
+            HttpContext.Session.SetString("Service.Filter.Third", filterThirdJSON);
         }
 
         // GET: Services/Details/5

@@ -10,7 +10,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 <div>
-    <label for="find">Find service</label>
+    <label for="find">Find service by client ID</label>
     <input id="find" name="find" value="@GetFromSession("Service.Finding")" />
 </div>
 <table class="table">
@@ -18,16 +18,18 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ClientId)
-                <input type="checkbox" id="sort-name"
+                <input type="checkbox" id="sort-first"
                        checked="@(GetFromSession("Service.Filter.First") == "True" ? true : false)" />
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EmployeeId)
-                <input type="checkbox" id="sort-price"
+                <input type="checkbox" id="sort-second"
                        checked="@(GetFromSession("ServiceType.Filter.Second") == "True" ? true : false)" />
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ServiceTypeId)
+                <input type="checkbox" id="sort-third"
+                       checked="@(GetFromSession("ServiceType.Filter.Third") == "True" ? true : false)" />
             </th>
             <th></th>
         </tr>
@@ -37,13 +39,13 @@
         {
             <tr id="@item.ClientId" class="item-line">
                 <td>
-                    @Html.DisplayFor(modelItem => item.Client.ClientId)
+                    @Html.DisplayFor(modelItem => item.ClientId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Employee.EmployeeId)
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ServiceType.ServiceTypeId)
+                    @Html.DisplayFor(modelItem => item.ServiceTypeId)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ServiceId">Edit</a> |

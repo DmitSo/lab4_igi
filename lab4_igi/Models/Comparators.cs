@@ -60,12 +60,19 @@ namespace lab4_igi.Models
     {
         public int Compare(Service x, Service y)
         {
-            if (String.Compare(x.Client.Name, y.Client.Name) == 1)
+            if (x.ClientId > y.ClientId)
                 return 1;
-            else if (String.Compare(x.Client.Name, y.Client.Name) == -1)
+            else if (x.ClientId < y.ClientId)
                 return -1;
-            else
-                return x.ServiceType.Cost.CompareTo(y.ServiceType.Cost);
+            else if(x.EmployeeId > y.EmployeeId)
+                return 1;
+            else if (x.EmployeeId < y.EmployeeId)
+                return -1;
+            else if (x.ServiceTypeId > y.ServiceTypeId)
+                return 1;
+            else if (x.ServiceTypeId < y.ServiceTypeId)
+                return -1;
+            return 0;
         }
     }
 }
